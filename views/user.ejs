@@ -1,0 +1,92 @@
+<html>
+    <style>
+        .main{
+            display:inline-block;
+            
+        }
+        .pad{
+            margin: 20px;
+        }
+        .s{
+            padding: 10px;
+            position:relative;
+            top: -30px;
+        }
+        .im{
+            width: 50px;
+            height: 238px;
+        }
+        .fi{
+            padding: 10px;
+            font-size: 30px;
+        }
+    </style>
+    <head>
+       <title>Shoping Here</title> 
+       <script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
+       <script src="/javascripts/product.js"></script>
+       <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">   
+    </head>
+    <body>      
+            <h2 class="main fi">Filter</h2>
+            <div class="main s">
+                <div class="select">
+                    <select class="is-hovered" required name="ptype" id="ptype1">
+                      <option value="hi">--Select Product Type--</option>
+                    </select>
+                  </div>
+            </div>
+            <%if(name!="undefined"){%>
+            <div class="main" style="float: right; padding:10px;">
+                <h1>Name <%=name%></h1>
+                <h1>State <%=state%></h1>
+                <h1>City <%=city%></h1>
+                
+                <input type="hidden" value="<%=name%>" name="name" id="n">
+                <input type="hidden" value="<%=state%>" name="state" id="s">
+                <input type="hidden" value="<%=city%>" name="city" id="c">
+                <%var task=a;%>
+            </div>
+            <div class="main" style="position:relative; top:0px;left:570px">
+                <form action="/product/loginsignup">
+                    <button id="product" style="width: 100px; height:50px" type="submit" name="btn" value="logout" >Log Out</button>
+                </form>
+            </div>
+            <%}else{%>
+                <form action="/product/loginsignup">
+                    <button style="display:inline; float: right; position:relative; top:-76px;left:-22px;" id="product" style="width: 100px; height:50px" type="submit" name="btn" value="go" >Login/SignUp</button>
+                </form>
+            <%}%>
+                  <br>
+            <% data.map((item,index)=>{%>
+            <div class="main">
+            <div class="card pad" style="width: 18rem;">
+                <img src="/images/<%=item.productimage%>" class="card-img-top im" alt="...">
+                <div class="card-body">
+                  <center><h1 class="card-title"><b><%=item.productname%></b></h1></center><br>
+                  <h4 class="card-text">Type <%=item.ptype%></h4><br>
+                  <h4 class="card-text">Price <s><%=item.productprice%> Rs</s> In Offer <%=item.productofferprice%> Rs</h4>
+                  <br><h4 class="card-text">GST On This Product <%=item.gst%>%</h4><br>
+                  <% eff=item.productofferprice*item.gst/100;
+                  tf=parseInt(eff)+parseInt(item.productofferprice);%>
+                  <h4 class="card-text">Total Price Include GST <%=tf%> Rs</h4><br>
+                  <%if(item.productstock==0){%>
+                  <h4 class="card-text" style="color: red;">Not In Stock</h4><br>
+                  <%}else{%>
+                  <h4 class="card-text">Stock Left <%=item.productstock%></h4><br>
+                  <%if(name!='undefined'){%>
+                  <center><a href="/product/purchase?id=<%=item.productid%>&st=<%=item.productstock%>&a=<%=task%>&name=<%=name%>&state=<%=state%>&city=<%=city%>" class="btn btn-primary">Buy Now</a></center>
+                  <%}
+                  else{%>
+                    <center><a href="/authentication/login" class="btn btn-primary">Buy Now</a></center>
+                <%}}%>
+                </div>
+              </div>
+            </div> 
+        
+        
+        <%})%>
+    </body>
+</html>

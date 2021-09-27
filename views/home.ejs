@@ -1,0 +1,122 @@
+<% var a="/images/"+file; %>
+<style>
+    .pic{
+        width: 407px;
+        height: 323px;
+    }
+</style>
+<html>
+    <head>
+        <title>
+            Home Page
+        </title>
+    </head>
+<body class="bo">
+<center>
+<table border="1" cellspacing="15" cellpadding="10">
+    
+    <caption>
+      <h2>User Details</h2> 
+    </caption>
+    <tr>
+        <th>
+            User Name
+        </th>
+        <th>
+            <%=fname%>&nbsp;<%=lname%>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            User Gender
+        </th>
+        <th>
+            <%=gender%>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            User Date Of Birth
+        </th>
+        <th>
+            <%=dob%>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            User Mobile Number
+        </th>
+        <th>
+            <%=mob%>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            User Gmail Id
+        </th>
+        <th>
+            <%=mail%>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Address Line 1
+        </th>
+        <th>
+            <%=address1%>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Address Line 2
+        </th>
+            <%
+            if(address2!=""){
+            %>
+        <th>
+            <%=address2%>
+        </th> <%}
+        else{%>
+        <th>
+            Not Provided
+        </th>
+<%}%>
+    </tr>
+    <tr>
+        <th>
+            User State
+        </th>
+        <th>
+            <%=state%>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            User City
+        </th>
+        <th>
+            <%=city%>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            User Intrest
+        </th>
+        <th>
+            <%=intrest%>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Picture
+        </th>
+        <td>
+            <div>
+                <img class="pic" src=<%=a %> >
+            </div>
+        </td>
+    </tr>
+</table>
+</center>
+</body>
+</html>
